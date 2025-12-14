@@ -25,11 +25,12 @@ locals {
 
 # EC2 Instance
 resource "aws_instance" "this" {
-  ami                    = data.aws_ami.amazon_linux.id
-  instance_type          = "t3.micro"  # 프리티어
-  subnet_id              = var.subnet_id
-  vpc_security_group_ids = var.security_group_ids
-  iam_instance_profile   = var.iam_instance_profile
+  ami                     = data.aws_ami.amazon_linux.id
+  instance_type           = "t3.micro"  # 프리티어
+  subnet_id               = var.subnet_id
+  vpc_security_group_ids  = var.security_group_ids
+  iam_instance_profile    = var.iam_instance_profile
+  disable_api_termination = false
   
   user_data = local.user_data
   

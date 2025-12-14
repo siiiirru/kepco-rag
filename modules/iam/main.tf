@@ -98,4 +98,8 @@ resource "aws_iam_instance_profile" "this" {
   tags = merge(var.tags, {
     Name = "${var.project_name}-ec2-profile"
   })
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }

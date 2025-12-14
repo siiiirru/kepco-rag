@@ -102,6 +102,10 @@ resource "aws_eip" "this" {
   })
   
   depends_on = [aws_internet_gateway.this]
+
+  lifecycle {
+    prevent_destroy = false
+  }
 }
 
 # NAT Gateway

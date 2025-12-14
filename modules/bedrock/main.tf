@@ -40,10 +40,11 @@ resource "aws_iam_role_policy" "this" {
 
 # Bedrock Agent
 resource "aws_bedrockagent_agent" "this" {
-  agent_name              = "${var.project_name}-agent"
-  agent_resource_role_arn = aws_iam_role.this.arn
-  foundation_model        = "amazon.nova-lite-v1:0"
-  instruction             = "You are a helpful assistant for KEPCO (Korea Electric Power Corporation). Answer questions about company policies, procedures, and technical information. Provide helpful and accurate responses based on your knowledge."
+  agent_name                   = "${var.project_name}-agent"
+  agent_resource_role_arn      = aws_iam_role.this.arn
+  foundation_model             = "amazon.nova-lite-v1:0"
+  instruction                  = "You are a helpful assistant for KEPCO (Korea Electric Power Corporation). Answer questions about company policies, procedures, and technical information. Provide helpful and accurate responses based on your knowledge."
+  skip_resource_in_use_check   = true
 
   tags = merge(var.tags, {
     Name = "${var.project_name}-bedrock-agent"
